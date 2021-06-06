@@ -1,10 +1,6 @@
 Manifest-Version: 1.0
 Implementation-Title: rest-with-springboot-udemy
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: emanuel
-Implementation-Vendor-Id: br.com.erudio
-Build-Jdk: 1.8.0_282
-Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
- ot-starter-parent/rest-with-springboot-udemy
+Build-Jdk-Spec: 1.8
 Created-By: Maven Integration for Eclipse
 
