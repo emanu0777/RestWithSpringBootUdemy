@@ -1,4 +1,4 @@
-package br.com.erudio.data.vo;
+package br.com.erudio.data.vo.V1;
 
 public class PersonVO {
 	

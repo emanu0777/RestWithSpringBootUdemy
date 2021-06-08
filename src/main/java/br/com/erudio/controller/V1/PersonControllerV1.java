@@ -1,4 +1,4 @@
-package br.com.erudio.controller;
+package br.com.erudio.controller.V1;
 
 import java.util.List;
 
@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.erudio.data.vo.PersonVO;
-import br.com.erudio.services.PersonServices;
+import br.com.erudio.data.vo.V1.PersonVO;
+import br.com.erudio.services.V1.PersonServicesV1;
 
 @RestController
-@RequestMapping("/person")
-public class PersonController {
+@RequestMapping("/person/V1")
+public class PersonControllerV1 {
 
 	@Autowired
-	private PersonServices personService;
+	private PersonServicesV1 personService;
 	
 	@GetMapping
 	public List<PersonVO> findAll() {
