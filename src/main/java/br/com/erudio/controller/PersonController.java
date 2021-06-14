@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.erudio.data.vo.PersonVO;
 import br.com.erudio.services.PersonServices;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(value = "PersonEndPoint", description = "Endpoints para operações da Entidade Person", tags = {"PersonEndpoint"} )
 @RestController
 @RequestMapping("/person")
 public class PersonController {
@@ -25,6 +28,7 @@ public class PersonController {
 	@Autowired
 	private PersonServices personService;
 	
+	@ApiOperation(value = "Find all person")
 	@GetMapping(produces =  {"application/json", "application/xml", "application/x-yaml"})
 	public List<PersonVO> findAll() {
 		List<PersonVO> listReturn  = personService.findAll();
@@ -37,6 +41,7 @@ public class PersonController {
 		return listReturn;
 	}
 
+	@ApiOperation(value = "Find person from id")
 	@GetMapping(value = "/{idPerson}", produces =  {"application/json", "application/xml", "application/x-yaml"})
 	public PersonVO findById(@PathVariable("idPerson") Long idPerson) {
 		PersonVO personVO = personService.findById(idPerson);
@@ -44,12 +49,14 @@ public class PersonController {
 		return personVO;
 	}
 	
+	@ApiOperation(value = "Delete person from id")
 	@DeleteMapping("/{idPerson}")
 	public ResponseEntity<?> delete(@PathVariable("idPerson") Long idPerson) {
 		personService.deleteById(idPerson);
 		return ResponseEntity.ok().build();
 	}
 	
+	@ApiOperation(value = "Save new person")
 	@PostMapping(consumes = {"application/json", "application/xml", "application/x-yaml"}, produces =  {"application/json", "application/xml", "application/x-yaml"})
 	public PersonVO savePersonVO(@RequestBody PersonVO person) {
 		PersonVO personVO = personService.create(person);
@@ -57,12 +64,12 @@ public class PersonController {
 		return personVO;
 	}
 	
+	@ApiOperation(value = "Update person")
 	@PutMapping(consumes = {"application/json", "application/xml", "application/x-yaml"}, produces =  {"application/json", "application/xml", "application/x-yaml"})
 	public PersonVO update(@RequestBody PersonVO person) {		
 		PersonVO personVO = personService.update(person);
 		personVO.add(linkTo(methodOn(PersonController.class).findById(personVO.getId())).withSelfRel());
 		return personVO;
 	}
-	
 	
 }
